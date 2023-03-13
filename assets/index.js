@@ -7,3 +7,4 @@ export { default as Search } from "./search.png";
 export { default as Restaurant } from "./restaurant.png";
 export { default as Star } from "./star.png";
 export { default as Rs } from "./Rs.png";
+export { default as Zomato } from "./zomato.png";

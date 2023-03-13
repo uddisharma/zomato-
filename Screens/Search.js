@@ -7,12 +7,18 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useLayoutEffect, useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Search, Rs } from "../assets";
 const Searching = () => {
+  const init = {
+    email: "",
+    password: "",
+  };
   const [text, setText] = useState("");
+  const [signup, setSignup] = useState(init);
   const [data, setData] = useState([]);
   const [price, setPrice] = useState(0);
   const navigation = useNavigation();
@@ -26,6 +32,27 @@ const Searching = () => {
       .then((res) => res.json())
       .then((json) => setData(json.meals))
       .catch((error) => console.error(error));
+  };
+  const storeData = async (value) => {
+    console.log(value);
+    try {
+      const jsonValue = JSON.stringify(value);
+      await AsyncStorage.setItem("@storage_Key", jsonValue);
+      setSignup(init);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const getData = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem("@storage_Key");
+      return jsonValue != null
+        ? console.log(JSON.parse(jsonValue))
+        : console.log("null");
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   // console.log(data);
@@ -47,10 +74,27 @@ const Searching = () => {
       <TouchableOpacity onPress={handlesearch}>
         <Text className="mx-4 text-center mt-3 p-2 bg-gray-400">Search</Text>
       </TouchableOpacity>
+      <TextInput
+        placeholder="Type here to translate!"
+        onChangeText={(newText) => setText(newText)}
+        defaultValue={signup.email}
+      />
+      <TextInput
+        placeholder="Type here to translate!"
+        onChangeText={(newText) => setText(newText)}
+        defaultValue={signup.password}
+      />
+      <TouchableOpacity onPress={() => storeData(signup)}>
+        <Text className="mx-4 text-center mt-3 p-2 bg-gray-400">Store</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={getData}>
+        <Text className="mx-4 text-center mt-3 p-2 bg-gray-400">Get</Text>
+      </TouchableOpacity>
       <ScrollView className="mt-5">
         {data.length > 0
           ? data.map((e) => (
               <TouchableOpacity
+                key={e.idMeal}
                 onPress={() =>
                   navigation.navigate("SingleFood", { id: e.idMeal })
                 }

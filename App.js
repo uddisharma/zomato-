@@ -11,6 +11,8 @@ import CategoryList from "./Screens/CategoryList";
 import SingleFood from "./Screens/SingleFood";
 // import { Search } from "./assets";
 import Searching from "./Screens/Search";
+import SignUp from "./Screens/SignUp";
+import Login from "./Screens/Login";
 export default function App() {
   const Stack = createNativeStackNavigator();
 
@@ -25,6 +27,8 @@ export default function App() {
             <Stack.Screen name="CategoryList" component={CategoryList} />
             <Stack.Screen name="SingleFood" component={SingleFood} />
             <Stack.Screen name="Search" component={Searching} />
+            <Stack.Screen name="SignUp" component={SignUp} />
+            <Stack.Screen name="Login" component={Login} />
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaProvider>

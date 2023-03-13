@@ -2,7 +2,7 @@ import { View, Text, Image, TextInput, ScrollView } from "react-native";
 import React, { useLayoutEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Logo, Search, User } from "../assets";
+import { Logo, Search, User, Zomato } from "../assets";
 import FaUserCircle from "react-icons/fa";
 import NavOptions from "../components/NavOptions.js";
 import { Icon } from "react-native-elements";
@@ -21,27 +21,19 @@ const HomeScreen = () => {
   return (
     <View className="flex-1 bg-white">
       <SafeAreaView className="flex-1 bg-white mb-1">
-        <View className=" pt-1 mx-4 flex-row justify-between space-x-2 items-center">
-          <View className="flex-row  space-x-2 items-center">
+        <View className="mx-4 flex-row align-middle justify-between space-x-2 items-center">
+          <View className="flex-row mt-4 space-x-2 items-center">
             <View>
               <Image
-                source={Logo}
-                className="w-[50px] h-[50px] rounded-full mb-4 mt-2 "
+                source={Zomato}
+                className="w-[150px] h-[50px]  mb-4 pt-2"
               />
             </View>
-            <View>
-              <Text className="text-gray-500">Order Now</Text>
-              <Text className="text-xl">Currnet Location</Text>
-            </View>
-            <Icon
-              className=" rounded-full  mt-5"
-              name="arrowdown"
-              color="gray"
-              type="antdesign"
-            />
           </View>
           <View>
-            <Image className="w-[60px] h-[60px]" source={User} />
+            <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
+              <Image className="w-[60px] h-[60px]" source={User} />
+            </TouchableOpacity>
           </View>
         </View>
         <TouchableOpacity
@@ -58,7 +50,7 @@ const HomeScreen = () => {
             keyboardType="default"
           /> */}
         </TouchableOpacity>
-        <ScrollView>
+        <ScrollView className="mt-4">
           <Categories />
           <View className="flex-row justify-between items-center mt-2  mx-4  ">
             <View>

@@ -3,7 +3,7 @@ import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Icon } from "react-native-elements";
-import { Logo, User } from "../assets";
+import { Logo, User, Zomato } from "../assets";
 
 const CategoryList = ({ route }) => {
   const name = route.params.param;
@@ -23,29 +23,18 @@ const CategoryList = ({ route }) => {
   //   console.log(data);
   return (
     <SafeAreaView className=" mx-2">
-      <View className=" pt-1 mx-4 flex-row justify-between space-x-2 items-center">
-        <View className="flex-row  space-x-2 items-center">
+      {/* <View className=" pt-1 mx-4 flex-row justify-between space-x-2 items-center"> */}
+      <View className="mx-4 flex-row align-middle justify-between space-x-2 items-center">
+        <View className="flex-row mt-4 space-x-2 items-center">
           <View>
-            <Image
-              source={Logo}
-              className="w-[50px] h-[50px] rounded-full mb-4 mt-2 "
-            />
+            <Image source={Zomato} className="w-[150px] h-[50px]  mb-4 pt-2" />
           </View>
-          <View>
-            <Text className="text-gray-500">Order Now</Text>
-            <Text className="text-xl">Currnet Location</Text>
-          </View>
-          <Icon
-            className=" rounded-full  mt-5"
-            name="arrowdown"
-            color="gray"
-            type="antdesign"
-          />
         </View>
         <View>
           <Image className="w-[60px] h-[60px]" source={User} />
         </View>
       </View>
+      {/* </View> */}
       <ScrollView>
         <View className="mb-20">
           {data &&
